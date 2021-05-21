@@ -8,7 +8,8 @@ using namespace blit;
 //
 // setup your game here
 //
-void init() {
+void init()
+{
     set_screen_mode(ScreenMode::hires);
 }
 
@@ -16,10 +17,11 @@ void init() {
 //
 // render(time)
 //
-// This function is called to perform rendering of the game. time is the 
+// This function is called to perform rendering of the game. time is the
 // amount if milliseconds elapsed since the start of your game
 //
-void render(uint32_t time) {
+void render(uint32_t time)
+{
 
     // clear the screen -- screen is a reference to the frame buffer and can be used to draw all things with the 32blit
     screen.clear();
@@ -37,8 +39,9 @@ void render(uint32_t time) {
 //
 // update(time)
 //
-// This is called to update your game state. time is the 
+// This is called to update your game state. time is the
 // amount if milliseconds elapsed since the start of your game
 //
-void update(uint32_t time) {
+void update(uint32_t time)
+{
 }
