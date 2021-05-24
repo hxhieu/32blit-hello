@@ -4,13 +4,13 @@
 
 assets.cpp:
   assets/no-image.png:
-    name: asset_no_image 
-  
+    name: asset_no_image
+
   assets/s4m_ur4i-platformer.png:
     name: asset_platformer
   assets/platformer.tmx:
     name: asset_tilemap
-  
+
   assets/tiled/towerDefense_tilesheet.png:
     name: png_kenney_tower_defense
 
@@ -18,7 +18,9 @@ assets.cpp:
     name: png_outdoors
   assets/tiled/1bit.png:
     name: png_1bit
-    
+
   assets/tiled/map_001.tmx:
     name: tmx_map_001
 
+  assets/pico8_invaders_sprites_LARGE.png:
+    name: png_invaders

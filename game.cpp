@@ -2,16 +2,19 @@
 #include "assets.hpp"
 
 using namespace blit;
+using namespace constants;
+using namespace mitmeo;
 
-TileMap *environment;
+// TileMap *environment;
+
+GameEngine *_engine;
 
 /* setup */
 void init()
 {
     blit::set_screen_mode(ScreenMode::hires);
-
-    screen.sprites = Surface::load(png_1bit);
-    environment = new TileMap((uint8_t *)tmx_map_001, nullptr, Size(64, 64), screen.sprites);
+    screen.sprites = SpriteSheet::load(png_invaders);
+    _engine = new GameEngine(&screen);
 }
 
 void render(uint32_t time_ms)
@@ -23,7 +26,7 @@ void render(uint32_t time_ms)
     // screen.alpha = 255;
     // screen.mask = nullptr;
 
-    environment->draw(&screen, Rect(0, 0, 320, 240));
+    // environment->draw(&screen, Rect(0, 0, 320, 240));
 
     // screen.alpha = 255;
     // screen.pen = Pen(255, 255, 255);
@@ -32,8 +35,13 @@ void render(uint32_t time_ms)
     // screen.pen = Pen(0, 0, 0);
     // screen.text("Tilemap demo", minimal_font, Point(5, 4));
     // screen.watermark();
+    // Size screen_size = screen.bounds;
+    // screen.sprite(0, Point((screen_size.w - SPRITE_SIZE) / 2, (screen_size.h - SPRITE_SIZE) / 2));
+
+    _engine->render(time_ms);
 }
 
-void update(uint32_t time)
+void update(uint32_t time_ms)
 {
+    _engine->render(time_ms);
 }
