@@ -10,7 +10,7 @@ void init()
 {
     blit::set_screen_mode(ScreenMode::hires);
 
-    screen.sprites = Surface::load(png_kenney_tower_defense);
+    screen.sprites = Surface::load(png_1bit);
     environment = new TileMap((uint8_t *)tmx_map_001, nullptr, Size(64, 64), screen.sprites);
 }
 

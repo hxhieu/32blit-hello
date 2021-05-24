@@ -13,6 +13,11 @@ assets.cpp:
   
   assets/tiled/towerDefense_tilesheet.png:
     name: png_kenney_tower_defense
+
+  assets/tiled/OutdoorsTileset.png:
+    name: png_outdoors
+  assets/tiled/1bit.png:
+    name: png_1bit
     
   assets/tiled/map_001.tmx:
     name: tmx_map_001
