@@ -11,14 +11,9 @@ assets.cpp:
   assets/platformer.tmx:
     name: asset_tilemap
   
-  # assets/test_sheet.png:
-  #   name: png_test_sheet
-  # assets/towerDefense_tilesheet_0_5.png:
-  #   name: png_kenney_tower_defense
-
-  assets/OutdoorsTileset.png:
-    name: png_outdoors
+  assets/tiled/towerDefense_tilesheet.png:
+    name: png_kenney_tower_defense
     
-  assets/map_001.tmx:
+  assets/tiled/map_001.tmx:
     name: tmx_map_001
 
