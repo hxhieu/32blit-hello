@@ -1,47 +1,39 @@
 #include "game.hpp"
+#include "assets.hpp"
 
 using namespace blit;
 
-///////////////////////////////////////////////////////////////////////////
-//
-// init()
-//
-// setup your game here
-//
+TileMap *environment;
+
+/* setup */
 void init()
 {
-    set_screen_mode(ScreenMode::hires);
+    blit::set_screen_mode(ScreenMode::hires);
+
+    screen.sprites = Surface::load(asset_platformer);
+    environment = new TileMap((uint8_t *)asset_tilemap, nullptr, Size(64, 64), screen.sprites);
 }
 
-///////////////////////////////////////////////////////////////////////////
-//
-// render(time)
-//
-// This function is called to perform rendering of the game. time is the
-// amount if milliseconds elapsed since the start of your game
-//
-void render(uint32_t time)
+void render(uint32_t time_ms)
 {
+    // screen.alpha = 255;
+    // screen.pen = Pen(39, 39, 54);
+    // screen.clear();
 
-    // clear the screen -- screen is a reference to the frame buffer and can be used to draw all things with the 32blit
-    screen.clear();
+    // screen.alpha = 255;
+    // screen.mask = nullptr;
 
-    // draw some text at the top of the screen
-    screen.alpha = 255;
-    screen.mask = nullptr;
-    screen.pen = Pen(255, 255, 255);
-    screen.rectangle(Rect(0, 0, 320, 14));
-    screen.pen = Pen(0, 0, 0);
-    screen.text("Hello 32blit!", minimal_font, Point(5, 4));
+    environment->draw(&screen, Rect(0, 0, 320, 240));
+
+    // screen.alpha = 255;
+    // screen.pen = Pen(255, 255, 255);
+    // screen.rectangle(Rect(0, 0, 320, 14));
+
+    // screen.pen = Pen(0, 0, 0);
+    // screen.text("Tilemap demo", minimal_font, Point(5, 4));
+    // screen.watermark();
 }
 
-///////////////////////////////////////////////////////////////////////////
-//
-// update(time)
-//
-// This is called to update your game state. time is the
-// amount if milliseconds elapsed since the start of your game
-//
 void update(uint32_t time)
 {
 }

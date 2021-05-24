@@ -4,5 +4,21 @@
 
 assets.cpp:
   assets/no-image.png:
-    name: asset_no_image
+    name: asset_no_image 
+  
+  assets/s4m_ur4i-platformer.png:
+    name: asset_platformer
+  assets/platformer.tmx:
+    name: asset_tilemap
+  
+  # assets/test_sheet.png:
+  #   name: png_test_sheet
+  # assets/towerDefense_tilesheet_0_5.png:
+  #   name: png_kenney_tower_defense
+
+  assets/OutdoorsTileset.png:
+    name: png_outdoors
+    
+  assets/map_001.tmx:
+    name: tmx_map_001
 
