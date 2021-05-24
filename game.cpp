@@ -2,7 +2,6 @@
 #include "assets.hpp"
 
 using namespace blit;
-using namespace constants;
 using namespace mitmeo;
 
 // TileMap *environment;
@@ -14,7 +13,10 @@ void init()
 {
     blit::set_screen_mode(ScreenMode::hires);
     screen.sprites = SpriteSheet::load(png_invaders);
-    _engine = new GameEngine(&screen);
+
+    _engine = new GameEngine();
+
+    _engine->add_entity(new Fighter());
 }
 
 void render(uint32_t time_ms)
@@ -30,7 +32,7 @@ void render(uint32_t time_ms)
 
     // screen.alpha = 255;
     // screen.pen = Pen(255, 255, 255);
-    // screen.rectangle(Rect(0, 0, 320, 14));
+    // screen.rectangle(Rect(0, 0, 320, 240));
 
     // screen.pen = Pen(0, 0, 0);
     // screen.text("Tilemap demo", minimal_font, Point(5, 4));
