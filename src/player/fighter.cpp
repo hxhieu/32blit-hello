@@ -4,10 +4,6 @@ using namespace blit;
 
 namespace mitmeo
 {
-    void Fighter::init()
-    {
-    }
-
     void Fighter::update(uint32_t time)
     {
     }
