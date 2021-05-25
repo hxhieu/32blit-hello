@@ -30,15 +30,15 @@ void render(uint32_t time_ms)
 
     // environment->draw(&screen, Rect(0, 0, 320, 240));
 
-    // screen.alpha = 255;
-    // screen.pen = Pen(255, 255, 255);
-    // screen.rectangle(Rect(0, 0, 320, 240));
-
     // screen.pen = Pen(0, 0, 0);
     // screen.text("Tilemap demo", minimal_font, Point(5, 4));
     // screen.watermark();
     // Size screen_size = screen.bounds;
     // screen.sprite(0, Point((screen_size.w - SPRITE_SIZE) / 2, (screen_size.h - SPRITE_SIZE) / 2));
+
+    // Black screen
+    screen.pen = Pen(0, 0, 0);
+    screen.clear();
 
     _engine->render(time_ms);
 }

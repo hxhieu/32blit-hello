@@ -1,5 +1,7 @@
 #include "game_engine.hpp"
 
+using namespace blit;
+
 namespace mitmeo
 {
     void GameEngine::render(uint32_t time_ms)
