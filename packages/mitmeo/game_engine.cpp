@@ -1,7 +1,5 @@
 #include "game_engine.hpp"
 
-using namespace blit;
-
 // Default tile size for this game
 extern int8_t SPRITE_SIZE;
 

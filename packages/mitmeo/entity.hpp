@@ -19,10 +19,13 @@ namespace mitmeo
             _id = ++uid;
         }
 
-        uint32_t id() const
+        uint32_t get_id()
         {
             return _id;
         }
+
+        uint32_t x;
+        uint32_t y;
 
         virtual void update(uint32_t time) = 0;
         virtual void render(uint32_t time_ms) = 0;

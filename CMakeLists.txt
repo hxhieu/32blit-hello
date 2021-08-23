@@ -22,7 +22,7 @@ set(PROJECT_DISTRIBS LICENSE README.md)
 if(MSVC)
   add_compile_options("/W4" "/wd4244" "/wd4324" "/wd4458" "/wd4100")
 else()
-  add_compile_options("-Wall" "-Wextra" "-Wdouble-promotion" "-Wno-unused-parameter")
+  add_compile_options("-Wall" "-Wextra" "-Wdouble-promotion" "-Wno-unused-parameter" "-fexceptions")
 endif()
 
 find_package (32BLIT CONFIG REQUIRED PATHS ../32blit-sdk)

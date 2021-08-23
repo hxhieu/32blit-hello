@@ -1,7 +1,6 @@
 #include "game.hpp"
 #include "assets.hpp"
 
-using namespace blit;
 using namespace mitmeo;
 
 uint8_t SPRITE_SIZE = 8;
@@ -9,8 +8,8 @@ uint8_t SPRITE_SIZE = 8;
 /* setup */
 void init()
 {
-    blit::set_screen_mode(ScreenMode::hires);
-    screen.sprites = SpriteSheet::load(png_invaders);
+    blit::set_screen_mode(blit::ScreenMode::hires);
+    blit::screen.sprites = blit::SpriteSheet::load(png_invaders);
 
     GameEngine::add_entity(new Fighter());
 }
@@ -18,8 +17,8 @@ void init()
 void render(uint32_t time_ms)
 {
     // Black screen
-    screen.pen = Pen(0, 0, 0);
-    screen.clear();
+    blit::screen.pen = blit::Pen(0, 0, 0);
+    blit::screen.clear();
 
     GameEngine::render(time_ms);
 }
