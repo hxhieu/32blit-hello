@@ -31,7 +31,10 @@ namespace mitmeo
         uint32_t x;
         uint32_t y;
 
-        void set_sprites(std::vector<uint8_t> sprites, uint8_t fps = 12, blit::SpriteTransform transform = blit::SpriteTransform::NONE)
+        void set_sprites(
+            const std::vector<uint8_t> sprites,
+            const uint8_t fps = 12,
+            const blit::SpriteTransform transform = blit::SpriteTransform::NONE)
         {
             _anim->set_fps(fps);
             _anim->set_sprites(sprites);
