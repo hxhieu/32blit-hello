@@ -1,5 +1,8 @@
 {
-    "cmake.configureSettings": {
-        "32BLIT_DIR": "/home/hxhieu/32blit-sdk"
-    },
+  "cmake.configureSettings": {
+    "32BLIT_DIR": "/home/hxhieu/32blit-sdk"
+  },
+  "files.associations": {
+    "new": "cpp"
+  }
 }

@@ -10,7 +10,7 @@ namespace mitmeo
         uint32_t _frame_time;
         uint32_t _last_time_ms;
         float _frame_rate;
-        std::vector<uint8_t> *_sprites;
+        std::vector<uint8_t> _sprites;
         uint8_t _sprite_index;
         uint8_t _sprite_count;
 
@@ -22,21 +22,16 @@ namespace mitmeo
             _frame_time = 0;
             _frame_rate = 1.0;
             _sprite_index = 0;
-            _sprites = new std::vector<uint8_t>(0);
         }
 
-        void set_sprites(std::vector<uint8_t> sprites)
+        void set_sprites(const std::vector<uint8_t> sprites)
         {
-            _sprites->clear();
-            for (auto sprite : sprites)
-            {
-                _sprites->push_back(sprite);
-            }
+            _sprites = sprites;
             _sprite_index = 0;
             _sprite_count = sprites.size();
         }
 
-        void set_fps(uint8_t fps)
+        void set_fps(const uint8_t fps)
         {
             _frame_rate = 1.0 / fps;
         }
@@ -56,7 +51,7 @@ namespace mitmeo
                     _frame_time = time_ms;
                 }
             }
-            return (*_sprites)[_sprite_index];
+            return _sprites[_sprite_index];
         }
     };
 }
