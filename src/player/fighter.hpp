@@ -8,14 +8,13 @@ namespace mitmeo
     class Fighter : public Entity
     {
     private:
-        uint32_t _sprite_size = 8;
-
     public:
         Fighter()
         {
             blit::Size screen_size = blit::screen.bounds;
-            x = (screen_size.w - _sprite_size) / 2;
+            x = (screen_size.w - 8) / 2;
             y = screen_size.h - 40;
+            set_sprites(std::vector<uint8_t>{3, 19});
         }
         void update(uint32_t time);
         void render(uint32_t time_ms);

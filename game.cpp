@@ -3,8 +3,6 @@
 
 using namespace mitmeo;
 
-uint8_t SPRITE_SIZE = 8;
-
 /* setup */
 void init()
 {

@@ -1,8 +1,5 @@
 #include "game_engine.hpp"
 
-// Default tile size for this game
-extern int8_t SPRITE_SIZE;
-
 namespace mitmeo
 {
     // Allocate the memory
@@ -25,11 +22,6 @@ namespace mitmeo
 
     GameEngine::GameEngine()
     {
-        // Validate required externs
-        if (SPRITE_SIZE <= 0)
-        {
-            throw std::invalid_argument("The value of SPRITE_SIZE is invalid");
-        }
     }
 
     GameEngine::~GameEngine()
