@@ -1,27 +1,37 @@
-#ifndef GAME_ENGINE_H
-#define GAME_ENGINE_H
+#pragma once
 
 #include "32blit.hpp"
+#include "entity.hpp"
 
 namespace mitmeo
 {
     class GameEngine
     {
     private:
-        blit::Surface *_screen;
-        uint8_t _sprite_size;
+        static GameEngine *_instance;
+        uint32_t _current_entity_id = 0;
+        std::vector<Entity *> _entities;
 
-    public:
-        GameEngine(blit::Surface *screen, uint8_t spriteSize = 8)
+        GameEngine();
+        ~GameEngine();
+
+        static GameEngine &get_instance()
         {
-            _screen = screen;
-            _sprite_size = spriteSize;
+            if (!_instance)
+            {
+                _instance = new GameEngine();
+            }
+            return *_instance;
         }
 
-        void update(uint32_t time);
-        void render(uint32_t time_ms);
-        void init();
+        void internal_update(uint32_t time);
+        void internal_render(uint32_t time_ms);
+        void internal_add_entity(Entity *entity);
+
+    public:
+        static void update(uint32_t time);
+        static void render(uint32_t time_ms);
+        static void add_entity(Entity *entity);
+        static void terminate();
     };
 }
-
-#endif // GAME_ENGINE_H

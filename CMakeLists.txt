@@ -6,12 +6,14 @@ project(blit_invaders)
 
 # Add your sources here (adding headers is optional, but helps some CMake generators)
 set(PROJECT_SOURCE
+  packages/mitmeo/entity.hpp
   packages/mitmeo/game_engine.hpp
   packages/mitmeo/game_engine.cpp 
-  game.cpp
-  game.hpp
+  packages/mitmeo/animated_sprite.hpp
   src/player/fighter.hpp
   src/player/fighter.cpp
+  game.hpp
+  game.cpp
 )
 
 # ... and any other files you want in the release here
