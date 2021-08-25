@@ -9,6 +9,7 @@ set(PROJECT_SOURCE
   packages/mitmeo/entity.hpp
   packages/mitmeo/game_engine.hpp
   packages/mitmeo/animated_sprite.hpp
+  src/const.hpp
   src/player/fighter.hpp
   src/player/fighter.cpp
   game.hpp

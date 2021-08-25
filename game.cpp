@@ -6,10 +6,10 @@ using namespace mitmeo;
 /* setup */
 void init()
 {
-    blit::set_screen_mode(blit::ScreenMode::hires);
+    blit::set_screen_mode(blit::ScreenMode::lores);
     blit::screen.sprites = blit::SpriteSheet::load(png_invaders);
 
-    GameEngine::add_entity(new Fighter());
+    GameEngine::add_entity(new blit_invaders::Fighter());
 }
 
 void render(uint32_t time_ms)
