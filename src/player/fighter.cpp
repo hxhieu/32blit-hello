@@ -2,7 +2,7 @@
 
 namespace mitmeo
 {
-    void Fighter::update(uint32_t time)
+    void Fighter::update(uint32_t time_ms)
     {
         bool button_a = blit::buttons & blit::Button::A;
         // bool button_b = blit::buttons & blit::Button::B;
@@ -15,17 +15,33 @@ namespace mitmeo
         // bool dpad_u = blit::buttons & blit::Button::DPAD_UP;
         // bool dpad_d = blit::buttons & blit::Button::DPAD_DOWN;
 
+        set_sprites(std::vector<uint8_t>{0});
         if (dpad_l)
         {
             x -= 1;
+            set_sprites(std::vector<uint8_t>{1});
         }
 
         if (dpad_r)
         {
             x += 1;
+            set_sprites(std::vector<uint8_t>{2});
+        }
+
+        if (button_a)
+        {
+            if (time_ms - _last_fire_time >= fire_interval)
+            {
+                do_fire();
+                _last_fire_time = time_ms;
+            }
         }
     }
 
+    void Fighter::do_fire()
+    {
+        printf("fire1!!\n");
+    }
     // void Fighter::render(uint32_t time_ms)
     // {
     //     blit::screen.sprite(1, blit::Point(x, y));
