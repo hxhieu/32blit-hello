@@ -6,6 +6,10 @@ project(blit_invaders)
 
 # Add your sources here (adding headers is optional, but helps some CMake generators)
 set(PROJECT_SOURCE
+  packages/mitmeo/libs/flecs.h
+  packages/mitmeo/libs/flecs.c
+  packages/mitmeo/components.hpp
+  packages/mitmeo/render_system.hpp
   packages/mitmeo/entity.hpp
   packages/mitmeo/game_engine.hpp
   packages/mitmeo/animated_sprite.hpp
