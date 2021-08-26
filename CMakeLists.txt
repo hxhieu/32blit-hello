@@ -12,6 +12,7 @@ set(PROJECT_SOURCE
   src/const.hpp
   src/player/fighter.hpp
   src/player/fighter.cpp
+  src/projectiles/projectile.hpp
   game.hpp
   game.cpp
 )
