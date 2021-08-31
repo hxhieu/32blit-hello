@@ -14,10 +14,10 @@ void init()
     GameEngine::init();
 
     // Example spawn
-    GameEngine::add_entity("Player")
-        .set<components::Sprite>(
-            {std::vector<uint8_t>{blit_invaders::sprites::player_idle, 6}, 12})
-        .set<components::Position>({40, 40});
+    // GameEngine::add_entity("Player")
+    //     .set<components::Sprite>(
+    //         {std::vector<uint8_t>{blit_invaders::sprites::player_idle, 6}, 12})
+    //     .set<components::Position>({40, 40});
 }
 
 void render(uint32_t time_ms)
