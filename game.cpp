@@ -15,7 +15,8 @@ void init()
 
     // Example spawn
     GameEngine::add_entity("Player")
-        .set<components::Sprite>({std::vector<uint8_t>{blit_invaders::sprites::player_idle}})
+        .set<components::Sprite>(
+            {std::vector<uint8_t>{blit_invaders::sprites::player_idle, 6}, 12})
         .set<components::Position>({40, 40});
 }
 

@@ -22,11 +22,12 @@ namespace mitmeo
 
         void update(uint32_t time)
         {
+            _world.progress();
         }
 
         void render(uint32_t time_ms)
         {
-            _render_system.run(_world.delta_time());
+            _render_system.run();
         }
 
         flecs::entity add_entity(const char *name)

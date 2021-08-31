@@ -8,7 +8,8 @@ namespace mitmeo
         {
             std::vector<uint8_t> sprites;
             uint8_t fps = 12;
-            uint8_t current_sprite = 0;
+            uint8_t sprite_index = 0;
+            float delta_time = 0;
         };
 
         struct Position
