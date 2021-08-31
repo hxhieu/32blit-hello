@@ -9,28 +9,16 @@ namespace mitmeo
 {
     using namespace components;
 
-    namespace systems
+    namespace RenderSystem
     {
-        struct RenderSystem
+        flecs::system<Sprite, Position> create(flecs::world &world)
         {
-            // Define types inside module scope. This is not mandatory, but ensures
-            // that their fully qualified Flecs name matches the C++ type name. It also
-            // ensures that type names cannot clash between modules.
-
-            RenderSystem(flecs::world &world)
-            {
-                /* Register module with world */
-                world.module<RenderSystem>();
-
-                /* Register components */
-                world.component<Sprite>();
-                world.component<Position>();
-                // world.component<AnimatedSprite>();
-
-                /* Register system */
+            auto system =
                 world.system<Sprite, Position>("Render")
-                    .each([](flecs::entity e, Sprite &s, Position &p) {});
-            }
-        };
+                    .kind(flecs::OnUpdate)
+                    .each([](flecs::entity e, Sprite &s, Position &p)
+                          { blit::screen.sprite(s.sprites[s.current_sprite], blit::Point(p.x, p.y)); });
+            return system;
+        }
     }
 }

@@ -10,9 +10,10 @@ void init()
 {
     blit::set_screen_mode(blit::ScreenMode::lores);
     blit::screen.sprites = blit::SpriteSheet::load(png_invaders);
-    // GameEngine::add_entity(new blit_invaders::Fighter());
+
     GameEngine::add_entity("Player")
-        .set<components::Sprite>({std::vector<uint8_t>{blit_invaders::sprites::player_idle}});
+        .set<components::Sprite>({std::vector<uint8_t>{blit_invaders::sprites::player_idle}})
+        .set<components::Position>({40, 40});
 }
 
 void render(uint32_t time_ms)

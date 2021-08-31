@@ -7,15 +7,14 @@
 
 namespace mitmeo
 {
-    using namespace systems;
-
     class GameEngine
     {
     private:
         static GameEngine *_instance;
         uint32_t _current_entity_id = 0;
         std::vector<Entity *> _entities;
-        flecs::world world;
+        flecs::world _world;
+        flecs::system<components::Sprite, components::Position> _render_system;
 
         GameEngine();
         ~GameEngine();
@@ -31,18 +30,10 @@ namespace mitmeo
 
         void internal_update(uint32_t time)
         {
-            world.progress();
-            for (auto i : _entities)
-            {
-                i->update(time);
-            }
         }
         void internal_render(uint32_t time_ms)
         {
-            for (auto i : _entities)
-            {
-                i->render(time_ms);
-            }
+            _render_system.run(_world.delta_time());
         }
         void internal_add_entity(Entity *entity)
         {
@@ -50,7 +41,7 @@ namespace mitmeo
         }
         flecs::entity internal_add_entity(const char *name)
         {
-            return world.entity(name);
+            return _world.entity(name);
         }
 
     public:
@@ -85,8 +76,8 @@ namespace mitmeo
 
     GameEngine::GameEngine()
     {
-        world.set_target_fps(30);
-        world.import<RenderSystem>();
+        _world.set_target_fps(30);
+        _render_system = RenderSystem::create(_world);
     }
 
     GameEngine::~GameEngine()
