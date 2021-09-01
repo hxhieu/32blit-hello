@@ -6,6 +6,13 @@ project(blit_invaders)
 
 # Add your sources here (adding headers is optional, but helps some CMake generators)
 set(PROJECT_SOURCE
+  packages/mitmeo/libs/entt.hpp
+  packages/mitmeo/components.hpp
+  packages/mitmeo/render_system.hpp
+  packages/mitmeo/movement_system.hpp
+  packages/mitmeo/game_engine.hpp
+  src/const.hpp
+  src/factory.hpp
   game.hpp
   game.cpp
 )
@@ -32,5 +39,3 @@ install (FILES ${PROJECT_DISTRIBS} DESTINATION .)
 set (CPACK_INCLUDE_TOPLEVEL_DIRECTORY OFF)
 set (CPACK_GENERATOR "ZIP" "TGZ")
 include (CPack)
-
-include_directories("packages/mitmeo")

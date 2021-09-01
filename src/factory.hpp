@@ -13,7 +13,8 @@ namespace mitmeo
         {
             auto e = world->create();
             world->emplace<Position>(e, 40, 40);
-            world->emplace<Sprite>(e, std::vector<uint8_t>{sprites::player_idle}, 30);
+            world->emplace<Sprite>(e, std::vector<uint8_t>{sprites::player_idle, 6}, 30);
+            world->emplace<Velocity>(e, 1, 1);
             return e;
         }
     }

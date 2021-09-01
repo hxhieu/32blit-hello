@@ -5,7 +5,7 @@ using namespace mitmeo;
 /* setup */
 void init()
 {
-    blit::set_screen_mode(blit::ScreenMode::lores);
+    blit::set_screen_mode(blit::ScreenMode::hires);
     blit::screen.sprites = blit::SpriteSheet::load(png_invaders);
 
     GameEngine::init();

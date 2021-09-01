@@ -3,7 +3,6 @@
 #include "32blit.hpp"
 #include "libs/entt.hpp"
 #include "components.hpp"
-#include "animated_sprite.hpp"
 
 namespace mitmeo
 {
