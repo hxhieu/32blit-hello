@@ -10,8 +10,6 @@ set(PROJECT_SOURCE
   game.cpp
 )
 
-include_directories("packages/mitmeo")
-
 # ... and any other files you want in the release here
 set(PROJECT_DISTRIBS LICENSE README.md)
 
@@ -34,3 +32,5 @@ install (FILES ${PROJECT_DISTRIBS} DESTINATION .)
 set (CPACK_INCLUDE_TOPLEVEL_DIRECTORY OFF)
 set (CPACK_GENERATOR "ZIP" "TGZ")
 include (CPack)
+
+include_directories("packages/mitmeo")

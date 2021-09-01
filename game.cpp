@@ -1,7 +1,4 @@
 #include "game.hpp"
-#include "assets.hpp"
-#include "packages/mitmeo/components.hpp"
-#include "src/const.hpp"
 
 using namespace mitmeo;
 
@@ -14,10 +11,8 @@ void init()
     GameEngine::init();
 
     // Example spawn
-    // GameEngine::add_entity("Player")
-    //     .set<components::Sprite>(
-    //         {std::vector<uint8_t>{blit_invaders::sprites::player_idle, 6}, 12})
-    //     .set<components::Position>({40, 40});
+    entt::registry *world = GameEngine::get_world();
+    blit_invaders::create_player(world);
 }
 
 void render(uint32_t time_ms)
