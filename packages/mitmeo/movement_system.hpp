@@ -19,6 +19,8 @@ namespace mitmeo
                 auto &d = directional.get<DirectionalControl>(e);
                 bool dpad_l = blit::buttons & blit::Button::DPAD_LEFT;
                 bool dpad_r = blit::buttons & blit::Button::DPAD_RIGHT;
+                bool dpad_u = blit::buttons & blit::Button::DPAD_UP;
+                bool dpad_d = blit::buttons & blit::Button::DPAD_DOWN;
 
                 v.x = v.y = 0;
 
@@ -30,6 +32,16 @@ namespace mitmeo
                 if (dpad_r && d.can_right)
                 {
                     v.x = d.upward ? d.speed : -d.speed;
+                }
+
+                if (dpad_u && d.can_up)
+                {
+                    v.y = d.upward ? -d.speed : d.speed;
+                }
+
+                if (dpad_d && d.can_down)
+                {
+                    v.y = d.upward ? d.speed : d.speed;
                 }
             }
 

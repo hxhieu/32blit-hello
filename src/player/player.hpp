@@ -22,7 +22,7 @@ namespace mitmeo
                     std::vector<uint8_t>{sprites::player_left},
                     std::vector<uint8_t>{sprites::player_right});
                 world->emplace<Velocity>(entt, 0, 0);
-                world->emplace<DirectionalControl>(entt, 1, false, false, true, true);
+                world->emplace<DirectionalControl>(entt, 1, true, true, true, true);
 
                 blit::Size screen_size = blit::screen.bounds;
                 world->emplace<Position>(entt, (screen_size.w - 8) / 2, screen_size.h - 40);
