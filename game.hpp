@@ -1,6 +1,6 @@
+#pragma once
+
 #include "32blit.hpp"
 #include "assets.hpp"
 #include "packages/mitmeo/game_engine.hpp"
-#include "packages/mitmeo/components.hpp"
-#include "src/const.hpp"
-#include "src/factory.hpp"
+#include "src/player/player.hpp"

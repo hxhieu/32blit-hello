@@ -21,5 +21,12 @@ namespace mitmeo
         {
             uint8_t x, y;
         };
+
+        struct DirectionalControl
+        {
+            bool can_up, can_down, can_left, can_right = true;
+            bool is_up = true;
+        };
+
     }
 }

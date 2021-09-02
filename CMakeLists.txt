@@ -11,8 +11,9 @@ set(PROJECT_SOURCE
   packages/mitmeo/render_system.hpp
   packages/mitmeo/movement_system.hpp
   packages/mitmeo/game_engine.hpp
+  packages/mitmeo/entity.hpp
   src/const.hpp
-  src/factory.hpp
+  src/player/player.hpp
   game.hpp
   game.cpp
 )

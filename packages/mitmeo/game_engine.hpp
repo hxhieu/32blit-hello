@@ -30,6 +30,11 @@ namespace mitmeo
         {
         }
 
+        entt::entity create_entity()
+        {
+            return _world.create();
+        }
+
         entt::registry *get_world()
         {
             return &_world;

@@ -8,11 +8,8 @@ void init()
     blit::set_screen_mode(blit::ScreenMode::hires);
     blit::screen.sprites = blit::SpriteSheet::load(png_invaders);
 
-    GameEngine::init();
-
     // Example spawn
-    entt::registry *world = GameEngine::get_world();
-    blit_invaders::create_player(world);
+    blit_invaders::Player player = blit_invaders::Player{};
 }
 
 void render(uint32_t time_ms)
