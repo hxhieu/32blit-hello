@@ -12,15 +12,17 @@ namespace mitmeo
     {
         void run(entt::registry &world, uint32_t time_ms)
         {
-            auto system = world.view<Sprite, Position>();
+            auto system = world.view<Sprite, Position, Velocity>();
             // use an extended callback
             // use forward iterators and get only the components of interest
             for (auto e : system)
             {
                 auto &p = system.get<Position>(e);
                 auto &s = system.get<Sprite>(e);
+                auto &v = system.get<Velocity>(e);
                 // Sprite animations
-                auto sprite_count = s.sprites.size();
+                auto sprites = v.x == 0 ? s.idle : (v.x == 1 ? s.right : s.left);
+                auto sprite_count = sprites.size();
                 auto frame_rate = (float)1 / s.fps;
                 if (sprite_count > 0)
                 {
@@ -37,7 +39,7 @@ namespace mitmeo
                     }
                 }
 
-                blit::screen.sprite(s.sprites[s.sprite_index], blit::Point(p.x, p.y));
+                blit::screen.sprite(sprites[s.sprite_index], blit::Point(p.x, p.y));
             }
 
             // delta_time sprite animation

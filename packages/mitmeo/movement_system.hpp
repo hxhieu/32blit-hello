@@ -1,5 +1,6 @@
 #pragma once
 
+#include "32blit.hpp"
 #include "libs/entt.hpp"
 #include "components.hpp"
 
@@ -11,13 +12,32 @@ namespace mitmeo
     {
         void run(entt::registry &world, uint32_t time_ms)
         {
-            auto system = world.view<Position, Velocity>();
-            // use an extended callback
-            // use forward iterators and get only the components of interest
-            for (auto e : system)
+            auto directional = world.view<Velocity, DirectionalControl>();
+            for (auto e : directional)
             {
-                auto &p = system.get<Position>(e);
-                auto &v = system.get<Velocity>(e);
+                auto &v = directional.get<Velocity>(e);
+                auto &d = directional.get<DirectionalControl>(e);
+                bool dpad_l = blit::buttons & blit::Button::DPAD_LEFT;
+                bool dpad_r = blit::buttons & blit::Button::DPAD_RIGHT;
+
+                v.x = v.y = 0;
+
+                if (dpad_l && d.can_left)
+                {
+                    v.x = d.upward ? -d.speed : d.speed;
+                }
+
+                if (dpad_r && d.can_right)
+                {
+                    v.x = d.upward ? d.speed : -d.speed;
+                }
+            }
+
+            auto translation = world.view<Position, Velocity>();
+            for (auto e : translation)
+            {
+                auto &p = translation.get<Position>(e);
+                auto &v = translation.get<Velocity>(e);
                 // Just translate
                 p.x += v.x;
                 p.y += v.y;
