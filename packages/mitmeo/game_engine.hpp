@@ -1,77 +1,53 @@
 #pragma once
 
 #include "32blit.hpp"
-#include "entity.hpp"
+#include "render_system.hpp"
+#include "movement_system.hpp"
+#include "libs/entt.hpp"
 
 namespace mitmeo
 {
-    class GameEngine
+    namespace GameEngine
     {
-    private:
-        static GameEngine *_instance;
-        uint32_t _current_entity_id = 0;
-        std::vector<Entity *> _entities;
+        uint8_t fps;
 
-        GameEngine();
-        ~GameEngine();
-
-        static GameEngine &get_instance()
+        namespace
         {
-            if (!_instance)
+            entt::registry _world;
+            uint32_t _last_update;
+            bool can_update(uint32_t time_ms)
             {
-                _instance = new GameEngine();
-            }
-            return *_instance;
-        }
-
-        void internal_update(uint32_t time)
-        {
-            for (auto i : _entities)
-            {
-                i->update(time);
+                if (time_ms - _last_update >= 1000)
+                {
+                    _last_update = time_ms;
+                    return true;
+                }
+                return false;
             }
         }
-        void internal_render(uint32_t time_ms)
+
+        void init()
         {
-            for (auto i : _entities)
-            {
-                i->render(time_ms);
-            }
-        }
-        void internal_add_entity(Entity *entity)
-        {
-            _entities.push_back(entity);
         }
 
-    public:
-        static void update(uint32_t time_ms);
-        static void render(uint32_t time_ms);
-        static void add_entity(Entity *entity);
+        entt::entity create_entity()
+        {
+            return _world.create();
+        }
+
+        entt::registry *get_world()
+        {
+            return &_world;
+        }
+
+        void update(uint32_t time_ms)
+        {
+            MovementSystem::run(_world, time_ms);
+        }
+
+        void render(uint32_t time_ms)
+        {
+            RenderSystem::run(_world, time_ms);
+        }
     };
-
-    // Allocate the memory
-    GameEngine *GameEngine::_instance = nullptr;
-
-    void GameEngine::update(uint32_t time_ms)
-    {
-        get_instance().internal_update(time_ms);
-    }
-
-    void GameEngine::render(uint32_t time_ms)
-    {
-        get_instance().internal_render(time_ms);
-    }
-
-    void GameEngine::add_entity(Entity *entity)
-    {
-        get_instance().internal_add_entity(entity);
-    }
-
-    GameEngine::GameEngine() {}
-
-    GameEngine::~GameEngine()
-    {
-        delete _instance;
-        _instance = nullptr;
-    }
 }

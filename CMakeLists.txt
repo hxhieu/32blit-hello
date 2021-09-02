@@ -6,13 +6,14 @@ project(blit_invaders)
 
 # Add your sources here (adding headers is optional, but helps some CMake generators)
 set(PROJECT_SOURCE
-  packages/mitmeo/entity.hpp
+  packages/mitmeo/libs/entt.hpp
+  packages/mitmeo/components.hpp
+  packages/mitmeo/render_system.hpp
+  packages/mitmeo/movement_system.hpp
   packages/mitmeo/game_engine.hpp
-  packages/mitmeo/animated_sprite.hpp
+  packages/mitmeo/entity.hpp
   src/const.hpp
-  src/player/fighter.hpp
-  src/player/fighter.cpp
-  src/projectiles/projectile.hpp
+  src/player/player.hpp
   game.hpp
   game.cpp
 )
