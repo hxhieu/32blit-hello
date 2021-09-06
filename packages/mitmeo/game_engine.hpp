@@ -3,6 +3,7 @@
 #include "32blit.hpp"
 #include "render_system.hpp"
 #include "movement_system.hpp"
+#include "logic_system.hpp"
 #include "libs/entt.hpp"
 
 namespace mitmeo
@@ -42,6 +43,7 @@ namespace mitmeo
 
         void update(uint32_t time_ms)
         {
+            LogicSystem::run(_world, time_ms);
             MovementSystem::run(_world, time_ms);
         }
 

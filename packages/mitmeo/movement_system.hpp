@@ -12,6 +12,7 @@ namespace mitmeo
     {
         void run(entt::registry &world, uint32_t time_ms)
         {
+            // Directional control
             auto directional = world.view<Velocity, DirectionalControl>();
             for (auto e : directional)
             {
@@ -26,33 +27,45 @@ namespace mitmeo
 
                 if (dpad_l && d.can_left)
                 {
-                    v.x = d.upward ? -d.speed : d.speed;
+                    v.x = d.upward ? -1 : 1;
                 }
 
                 if (dpad_r && d.can_right)
                 {
-                    v.x = d.upward ? d.speed : -d.speed;
+                    v.x = d.upward ? 1 : -1;
                 }
 
                 if (dpad_u && d.can_up)
                 {
-                    v.y = d.upward ? -d.speed : d.speed;
+                    v.y = d.upward ? -1 : 1;
                 }
 
                 if (dpad_d && d.can_down)
                 {
-                    v.y = d.upward ? d.speed : d.speed;
+                    v.y = d.upward ? 1 : -1;
                 }
             }
 
+            // Final translation
             auto translation = world.view<Position, Velocity>();
             for (auto e : translation)
             {
                 auto &p = translation.get<Position>(e);
                 auto &v = translation.get<Velocity>(e);
+
+                // Velocity should be 1
+                if (v.x != 0)
+                {
+                    v.x = v.x > 0 ? 1 : -1;
+                }
+                if (v.y != 0)
+                {
+                    v.y = v.y > 0 ? 1 : -1;
+                }
+
                 // Just translate
-                p.x += v.x;
-                p.y += v.y;
+                p.x += v.x * v.speed;
+                p.y += v.y * v.speed;
             }
         }
     }

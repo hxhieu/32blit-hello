@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stdint.h>
+
 namespace mitmeo
 {
     namespace components
@@ -21,15 +23,21 @@ namespace mitmeo
 
         struct Velocity
         {
-            uint8_t x, y;
+            int x, y;
+            uint8_t speed;
         };
 
         struct DirectionalControl
         {
-            int speed;
             bool can_up, can_down, can_left, can_right = true;
             bool upward = true;
         };
 
+        struct Update;
+        typedef void (*UpdateCallback)(uint32_t time_ms);
+        typedef struct Update
+        {
+            UpdateCallback update; // The callback to run the update logic
+        } Update;
     }
 }

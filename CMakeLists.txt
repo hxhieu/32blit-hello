@@ -6,17 +6,20 @@ project(blit_invaders)
 
 # Add your sources here (adding headers is optional, but helps some CMake generators)
 set(PROJECT_SOURCE
-  packages/mitmeo/libs/entt.hpp
-  packages/mitmeo/components.hpp
-  packages/mitmeo/render_system.hpp
-  packages/mitmeo/movement_system.hpp
-  packages/mitmeo/game_engine.hpp
-  packages/mitmeo/entity.hpp
-  src/const.hpp
-  src/player/player.hpp
   game.hpp
   game.cpp
 )
+
+include_directories(src)
+
+# include_directories(
+#   src
+#   packages
+# )
+# link_directories(
+#   src
+#   packages
+# )
 
 # ... and any other files you want in the release here
 set(PROJECT_DISTRIBS LICENSE README.md)
@@ -31,6 +34,9 @@ endif()
 find_package (32BLIT CONFIG REQUIRED PATHS ../32blit-sdk)
 
 blit_executable (${PROJECT_NAME} ${PROJECT_SOURCE})
+
+# target_link_libraries(${PROJECT_NAME} src)
+
 blit_assets_yaml (${PROJECT_NAME} assets.yml)
 blit_metadata (${PROJECT_NAME} metadata.yml)
 add_custom_target (flash DEPENDS ${PROJECT_NAME}.flash)
