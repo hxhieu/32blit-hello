@@ -4,22 +4,14 @@ cmake_minimum_required(VERSION 3.9)
 # Replace "game" with a name for your project (this is used the name of the output)
 project(blit_invaders)
 
-# Add your sources here (adding headers is optional, but helps some CMake generators)
-set(PROJECT_SOURCE
-  game.hpp
-  game.cpp
+include_directories(
+  "entt/src/entt"
+  "include/engine"
+  "include"
 )
 
-include_directories(src)
-
-# include_directories(
-#   src
-#   packages
-# )
-# link_directories(
-#   src
-#   packages
-# )
+# Add your sources here (adding headers is optional, but helps some CMake generators)
+file(GLOB_RECURSE PROJECT_SOURCE "game.cpp" "src/*.cpp")
 
 # ... and any other files you want in the release here
 set(PROJECT_DISTRIBS LICENSE README.md)
@@ -34,8 +26,6 @@ endif()
 find_package (32BLIT CONFIG REQUIRED PATHS ../32blit-sdk)
 
 blit_executable (${PROJECT_NAME} ${PROJECT_SOURCE})
-
-# target_link_libraries(${PROJECT_NAME} src)
 
 blit_assets_yaml (${PROJECT_NAME} assets.yml)
 blit_metadata (${PROJECT_NAME} metadata.yml)

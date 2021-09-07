@@ -1,15 +1,16 @@
 #pragma once
 
 #include "32blit.hpp"
-#include "../../packages/mitmeo/entity.hpp"
-#include "../../packages/mitmeo/game_engine.hpp"
-#include "../const.hpp"
+#include "entt.hpp"
+#include "sprites.h"
+#include "entity.h"
+#include "components.h"
 
 namespace mitmeo
 {
     namespace blit_invaders
     {
-        class Player : public Entity
+        class Player : public engine::Entity
         {
         private:
             static void update(uint32_t time_ms);

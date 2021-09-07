@@ -8,10 +8,11 @@ namespace mitmeo
     {
         struct Sprite
         {
-            uint8_t fps = 12;
             std::vector<uint8_t> idle;
             std::vector<uint8_t> left;
             std::vector<uint8_t> right;
+            uint8_t fps = 12;
+            uint8_t w, h = 8;
             uint8_t sprite_index = 0;
             uint32_t time_ms = 0;
         };

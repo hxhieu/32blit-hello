@@ -1,23 +1,19 @@
-#pragma once
-
-#include "32blit.hpp"
-#include "libs/entt.hpp"
-#include "components.hpp"
+#include "movement_system.h"
 
 namespace mitmeo
 {
-    using namespace components;
-
-    namespace MovementSystem
+    namespace engine
     {
-        void run(entt::registry &world, uint32_t time_ms)
+        MovementSystem::MovementSystem() {}
+
+        void MovementSystem::run(entt::registry &world, uint32_t time_ms)
         {
             // Directional control
-            auto directional = world.view<Velocity, DirectionalControl>();
+            auto directional = world.view<components::Velocity, components::DirectionalControl>();
             for (auto e : directional)
             {
-                auto &v = directional.get<Velocity>(e);
-                auto &d = directional.get<DirectionalControl>(e);
+                auto &v = directional.get<components::Velocity>(e);
+                auto &d = directional.get<components::DirectionalControl>(e);
                 bool dpad_l = blit::buttons & blit::Button::DPAD_LEFT;
                 bool dpad_r = blit::buttons & blit::Button::DPAD_RIGHT;
                 bool dpad_u = blit::buttons & blit::Button::DPAD_UP;
@@ -47,11 +43,11 @@ namespace mitmeo
             }
 
             // Final translation
-            auto translation = world.view<Position, Velocity>();
+            auto translation = world.view<components::Position, components::Velocity>();
             for (auto e : translation)
             {
-                auto &p = translation.get<Position>(e);
-                auto &v = translation.get<Velocity>(e);
+                auto &p = translation.get<components::Position>(e);
+                auto &v = translation.get<components::Velocity>(e);
 
                 // Velocity should be 1
                 if (v.x != 0)
