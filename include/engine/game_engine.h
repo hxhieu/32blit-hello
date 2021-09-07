@@ -26,9 +26,9 @@ namespace mitmeo
         private:
             static GameEngine *_instance;
             entt::registry _world;
-            LogicSystem _logic_system;
             MovementSystem _movement_system;
             RenderSystem _render_system;
+            LogicSystem _logic_system;
 
             GameEngine();
             ~GameEngine();

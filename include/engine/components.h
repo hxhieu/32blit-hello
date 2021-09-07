@@ -24,7 +24,7 @@ namespace mitmeo
 
         struct Velocity
         {
-            int x, y;
+            int8_t x, y;
             uint8_t speed;
         };
 
@@ -40,5 +40,9 @@ namespace mitmeo
         {
             UpdateCallback update; // The callback to run the update logic
         } Update;
+
+        struct AutoDestroy
+        {
+        };
     }
 }

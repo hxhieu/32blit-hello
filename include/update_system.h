@@ -2,16 +2,16 @@
 
 #include "32blit.hpp"
 #include "entt.hpp"
-#include "components.h"
+#include "player.h"
 
 namespace mitmeo
 {
-    namespace engine
+    namespace blit_invaders
     {
-        class LogicSystem
+        class UpdateSystem
         {
         public:
-            LogicSystem();
+            UpdateSystem();
             void run(entt::registry &world, uint32_t time_ms);
         };
     }

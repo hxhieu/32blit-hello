@@ -49,7 +49,7 @@ namespace mitmeo
                 auto &p = translation.get<components::Position>(e);
                 auto &v = translation.get<components::Velocity>(e);
 
-                // Velocity should be 1
+                // Reset velocity, should always be 1
                 if (v.x != 0)
                 {
                     v.x = v.x > 0 ? 1 : -1;

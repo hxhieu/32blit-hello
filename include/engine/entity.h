@@ -14,6 +14,8 @@ namespace mitmeo
 
         public:
             Entity();
+
+            blit::Point get_position();
         };
     }
 }
