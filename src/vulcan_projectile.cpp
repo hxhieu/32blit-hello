@@ -7,14 +7,13 @@ namespace mitmeo
         VulcanProjectile::VulcanProjectile(uint32_t x, uint32_t y) : VulcanProjectile(x, y, 0, -1) {}
         VulcanProjectile::VulcanProjectile(uint32_t x, uint32_t y, int8_t dir_x, int8_t dir_y)
         {
-            entt::registry *world = engine::GameEngine::GetInstance()->get_world();
-            world->emplace<components::Sprite>(
+            world.emplace<components::Sprite>(
                 entt,
                 std::vector<uint8_t>{sprites::vulcan_1, sprites::vulcan_2});
-            world->emplace<components::Velocity>(entt, dir_x, dir_y, 2);
+            world.emplace<components::Velocity>(entt, dir_x, dir_y, 2);
             // Center pivot
-            world->emplace<components::Position>(entt, x - 4, y - 4);
-            world->emplace<components::AutoDestroy>(entt);
+            world.emplace<components::Position>(entt, x - 4, y - 4);
+            world.emplace<components::AutoDestroy>(entt);
         }
     }
 }

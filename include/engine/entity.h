@@ -1,7 +1,9 @@
 #pragma once
 
+#include "32blit.hpp"
 #include "entt.hpp"
 #include "game_engine.h"
+#include "components.h"
 
 namespace mitmeo
 {

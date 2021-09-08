@@ -3,7 +3,6 @@
 #include "32blit.hpp"
 #include "sprites.h"
 #include "entity.h"
-#include "game_engine.h"
 
 namespace mitmeo
 {
