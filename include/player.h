@@ -14,15 +14,17 @@ namespace mitmeo
         class Player : public engine::Entity
         {
         private:
-            inline static uint32_t _last_fire_time;
-            inline static uint16_t _fire_interval = 500;
+            uint32_t _last_fire_time;
 
-            static void update(uint32_t time_ms);
-            static void do_fire();
+            void do_fire();
 
         public:
-            void set_fire_interval(uint8_t ms);
             Player();
+
+            uint16_t fire_interval;
+
+            void set_fire_interval(uint8_t ms);
+            void update(uint32_t time_ms);
         };
     }
 }

@@ -4,21 +4,11 @@ namespace mitmeo
 {
     namespace blit_invaders
     {
-        void Player::update(uint32_t time_ms)
-        {
-            bool button_a = blit::buttons & blit::Button::A;
-            if (button_a)
-            {
-                if (time_ms - _last_fire_time >= _fire_interval)
-                {
-                    do_fire();
-                    _last_fire_time = time_ms;
-                }
-            }
-        }
-
         Player::Player()
         {
+            _last_fire_time = 0;
+            fire_interval = 500;
+
             entt::registry *world = engine::GameEngine::GetInstance()->get_world();
             world->emplace<components::Sprite>(
                 entt,
@@ -28,28 +18,28 @@ namespace mitmeo
                 30);
             world->emplace<components::Velocity>(entt, 0, 0, 1);
             world->emplace<components::DirectionalControl>(entt, 1, true, true, true, true);
-            // world->emplace<components::Update>(entt, [&](uint32_t time_ms)
-            //                                    { auto pos = get_position(); });
+            world->emplace<components::Ref<Player>>(entt, this);
 
             blit::Size screen_size = blit::screen.bounds;
             world->emplace<components::Position>(entt, (screen_size.w - 8) / 2, screen_size.h - 40);
         }
 
-        void Player::set_fire_interval(uint8_t ms)
+        void Player::update(uint32_t time_ms)
         {
-            _fire_interval = ms;
+            bool button_a = blit::buttons & blit::Button::A;
+            if (button_a)
+            {
+                if (time_ms - _last_fire_time >= fire_interval)
+                {
+                    do_fire();
+                    _last_fire_time = time_ms;
+                }
+            }
         }
 
         void Player::do_fire()
         {
-            // auto pos = get_position();
-            // auto projectile = VulcanProjectile(pos.x, pos.y);
+            VulcanProjectile(100, 100);
         }
-
-        // typedef void (*PlayerUpdateCallback)(Player *player, uint32_t time_ms);
-        // typedef struct PlayerUpdate
-        // {
-        //     PlayerUpdateCallback update; // The callback to run the update logic
-        // } PlayerUpdate;
     }
 }

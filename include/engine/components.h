@@ -44,5 +44,11 @@ namespace mitmeo
         struct AutoDestroy
         {
         };
+
+        template <class T>
+        struct Ref
+        {
+            T *instance;
+        };
     }
 }

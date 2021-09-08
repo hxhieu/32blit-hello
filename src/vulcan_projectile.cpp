@@ -4,9 +4,9 @@ namespace mitmeo
 {
     namespace blit_invaders
     {
-        VulcanProjectile::VulcanProjectile(uint8_t x, uint8_t y, int8_t dir_x, int8_t dir_y)
+        VulcanProjectile::VulcanProjectile(uint32_t x, uint32_t y) : VulcanProjectile(x, y, 0, -1) {}
+        VulcanProjectile::VulcanProjectile(uint32_t x, uint32_t y, int8_t dir_x, int8_t dir_y)
         {
-            printf("%d\n", dir_y);
             entt::registry *world = engine::GameEngine::GetInstance()->get_world();
             world->emplace<components::Sprite>(
                 entt,
