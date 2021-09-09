@@ -3,6 +3,7 @@
 #include "assets.hpp"
 #include "game_engine.h"
 #include "player_logic.h"
+#include "invader_sm_lgreen.h"
 
 using namespace mitmeo;
 
@@ -14,7 +15,8 @@ void init()
     blit::set_screen_mode(blit::ScreenMode::hires);
     blit::screen.sprites = blit::SpriteSheet::load(png_invaders);
     // Example spawn
-    blit_invaders::Player{};
+    blit_invaders::Player();
+    blit_invaders::InvaderSmallLightGreen();
 }
 
 void update(uint32_t time_ms)

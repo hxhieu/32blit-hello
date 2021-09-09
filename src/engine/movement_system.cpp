@@ -64,8 +64,8 @@ namespace mitmeo
                 // Just translate
                 auto sprite_w = s.actual_w();
                 auto sprite_h = s.actual_h();
-                p.x = std::clamp(p.x + v.x * v.speed, sprite_w, blit::screen.bounds.w);
-                p.y = std::clamp(p.y + v.y * v.speed, sprite_h, blit::screen.bounds.h);
+                p.x = std::clamp((int32_t)(p.x + v.x * v.speed), sprite_w, blit::screen.bounds.w);
+                p.y = std::clamp((int32_t)(p.y + v.y * v.speed), sprite_h, blit::screen.bounds.h);
             }
         }
     }
