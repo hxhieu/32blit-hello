@@ -2,12 +2,11 @@
 #include "entt.hpp"
 #include "assets.hpp"
 #include "game_engine.h"
-#include "player.h"
-#include "update_system.h"
+#include "player_logic.h"
 
 using namespace mitmeo;
 
-blit_invaders::UpdateSystem _update_system;
+blit_invaders::PlayerLogic _player_logic;
 
 /* setup */
 void init()
@@ -20,6 +19,7 @@ void init()
 
 void update(uint32_t time_ms)
 {
+    _player_logic.run(time_ms);
     engine::update(time_ms);
 }
 
