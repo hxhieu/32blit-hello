@@ -12,7 +12,7 @@ namespace mitmeo
                 std::vector<uint8_t>{sprites::vulcan_1, sprites::vulcan_2});
             world.emplace<components::Velocity>(entt, dir_x, dir_y, 2);
             // Center pivot
-            world.emplace<components::Position>(entt, x - 4, y - 4);
+            world.emplace<components::Position>(entt, x - 8, y - 8);
             world.emplace<components::AutoDestroy>(entt);
         }
     }

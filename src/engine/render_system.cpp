@@ -35,7 +35,12 @@ namespace mitmeo
                     }
                 }
 
-                blit::screen.sprite(sprites[s.sprite_index], blit::Point(p.x, p.y), blit::Point(s.w / 2, s.h / 2), 2.0, 0);
+                blit::screen.sprite(
+                    sprites[s.sprite_index],
+                    blit::Point(p.x, p.y),
+                    blit::Point((s.w * s.scale) / 2, (s.h * s.scale) / 2),
+                    s.scale,
+                    s.transform);
             }
 
             // delta_time sprite animation
