@@ -17,6 +17,15 @@ namespace mitmeo
             uint8_t transform = 0;
             uint8_t sprite_index = 0;
             uint32_t time_ms = 0;
+
+            int32_t actual_w()
+            {
+                return w * (uint16_t)scale;
+            }
+            int32_t actual_h()
+            {
+                return h * (uint16_t)scale;
+            }
         };
 
         struct Position
