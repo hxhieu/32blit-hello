@@ -1,15 +1,26 @@
-#include "game.hpp"
+#include "32blit.hpp"
+#include "entt.hpp"
+#include "assets.hpp"
+#include "game_engine.h"
+#include "player_logic.h"
 
 using namespace mitmeo;
+
+blit_invaders::PlayerLogic _player_logic;
 
 /* setup */
 void init()
 {
     blit::set_screen_mode(blit::ScreenMode::hires);
     blit::screen.sprites = blit::SpriteSheet::load(png_invaders);
-
     // Example spawn
-    blit_invaders::Player player = blit_invaders::Player{};
+    blit_invaders::Player{};
+}
+
+void update(uint32_t time_ms)
+{
+    _player_logic.run(time_ms);
+    engine::update(time_ms);
 }
 
 void render(uint32_t time_ms)
@@ -18,10 +29,5 @@ void render(uint32_t time_ms)
     blit::screen.pen = blit::Pen(0, 0, 0);
     blit::screen.clear();
 
-    GameEngine::render(time_ms);
-}
-
-void update(uint32_t time_ms)
-{
-    GameEngine::update(time_ms);
+    engine::render(time_ms);
 }

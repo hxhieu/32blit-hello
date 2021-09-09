@@ -1,4 +1,5 @@
 #pragma once
+
 #include <stdint.h>
 
 namespace mitmeo
@@ -10,6 +11,8 @@ namespace mitmeo
             const uint8_t player_idle = 0;
             const uint8_t player_left = 1;
             const uint8_t player_right = 2;
+            const uint8_t vulcan_1 = 16;
+            const uint8_t vulcan_2 = 17;
         }
     }
 }
