@@ -45,15 +45,14 @@ namespace mitmeo
             bool upward = true;
         };
 
-        struct Update;
-        typedef void (*UpdateCallback)(uint32_t time_ms);
-        typedef struct Update
-        {
-            UpdateCallback update; // The callback to run the update logic
-        } Update;
-
         struct AutoDestroy
         {
         };
+
+        struct Collider
+        {
+            int w = 8, h = 8, x = 0, y = 0;
+        };
+
     }
 }

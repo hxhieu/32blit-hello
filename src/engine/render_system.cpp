@@ -8,9 +8,10 @@ namespace mitmeo
 
         void RenderSystem::run(entt::registry &world, uint32_t time_ms)
         {
+            // Debug pen
+            blit::screen.pen = blit::Pen(0, 255, 0, 200);
+
             auto system = world.view<components::Sprite, components::Position, components::Velocity>();
-            // use an extended callback
-            // use forward iterators and get only the components of interest
             for (auto e : system)
             {
                 auto &p = system.get<components::Position>(e);
@@ -38,32 +39,35 @@ namespace mitmeo
                 blit::screen.sprite(
                     sprites[s.sprite_index],
                     blit::Point(p.x, p.y),
-                    blit::Point((s.w * s.scale) / 2, (s.h * s.scale) / 2),
+                    blit::Point(s.w / 2, s.h / 2),
                     s.scale,
                     s.transform);
+                // Origin
+                blit::screen.line(blit::Point(p.x - 2, p.y), blit::Point(p.x + 2, p.y));
+                blit::screen.line(blit::Point(p.x, p.y - 2), blit::Point(p.x, p.y + 2));
             }
 
-            // delta_time sprite animation
-            // Sprite animations
-            //           auto sprite_count = s.sprites.size();
-            //           auto frame_rate = (float)1 / s.fps;
-            //           if (sprite_count > 0)
-            //           {
-            //               s.delta_time += e.delta_time();
+            auto colliding = world.view<components::Collider, components::Position>();
+            std::vector<blit::Rect> colliders = std::vector<blit::Rect>{};
+            for (auto e : colliding)
+            {
+                auto &c = colliding.get<components::Collider>(e);
+                auto &p = colliding.get<components::Position>(e);
+                colliders.emplace_back(blit::Rect{
+                    p.x + c.x,
+                    p.y + c.y,
+                    c.w,
+                    c.h});
+            }
 
-            //               if (s.delta_time >= frame_rate)
-            //               {
-            //                   s.sprite_index++;
-            //                   // Loop => back to 1st sprite
-            //                   if (s.sprite_index >= sprite_count)
-            //                   {
-            //                       s.sprite_index = 0;
-            //                   }
-            //                   s.delta_time = 0;
-            //               }
-            //           }
-
-            //           blit::screen.sprite(s.sprites[s.sprite_index], blit::Point(p.x, p.y));
+            for (auto c : colliders)
+            {
+                // printf("%d\n", c.x);
+                blit::screen.line(blit::Point(c.x - c.w / 2, c.y - c.h / 2), blit::Point(c.x + c.w / 2, c.y - c.h / 2));
+                blit::screen.line(blit::Point(c.x - c.w / 2, c.y + c.h / 2), blit::Point(c.x + c.w / 2, c.y + c.h / 2));
+                blit::screen.line(blit::Point(c.x - c.w / 2, c.y - c.h / 2), blit::Point(c.x - c.w / 2, c.y + c.h / 2));
+                blit::screen.line(blit::Point(c.x + c.w / 2, c.y - c.h / 2), blit::Point(c.x + c.w / 2, c.y + c.h / 2));
+            }
         }
     };
 }

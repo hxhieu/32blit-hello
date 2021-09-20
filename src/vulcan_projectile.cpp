@@ -10,10 +10,11 @@ namespace mitmeo
             world.emplace<components::Sprite>(
                 entt,
                 std::vector<uint8_t>{sprites::vulcan_1, sprites::vulcan_2});
-            world.emplace<components::Velocity>(entt, dir_x, dir_y, 3);
+            world.emplace<components::Velocity>(entt, dir_x, dir_y, 1);
             // Center pivot
-            world.emplace<components::Position>(entt, x - 8, y - 8);
+            world.emplace<components::Position>(entt, x, y);
             world.emplace<components::AutoDestroy>(entt);
+            world.emplace<components::Collider>(entt, 8, 8, 0, -4);
         }
     }
 }

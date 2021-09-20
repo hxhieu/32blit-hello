@@ -14,6 +14,7 @@ namespace mitmeo
                 12);
             world.emplace<components::Velocity>(entt, 0, 0, 1);
             world.emplace<components::Position>(entt, 100, 100);
+            world.emplace<components::Collider>(entt, 16, 16);
             world.emplace<InvaderSmallComponent>(entt);
         }
     }
