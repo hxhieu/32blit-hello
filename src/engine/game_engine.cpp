@@ -3,6 +3,7 @@
 namespace mitmeo
 {
     entt::registry world;
+    entt::dispatcher dispatcher;
 
     namespace
     {
@@ -15,6 +16,7 @@ namespace mitmeo
     {
         _logic_system.run(world, time_ms);
         _movement_system.run(world, time_ms);
+        dispatcher.update();
     }
 
     void engine::render(uint32_t time_ms)

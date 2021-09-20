@@ -3,6 +3,7 @@
 #include "32blit.hpp"
 #include "entt.hpp"
 #include "components.h"
+#include "events.h"
 
 namespace mitmeo
 {

@@ -2,6 +2,7 @@
 
 namespace mitmeo
 {
+    extern entt::dispatcher dispatcher;
     namespace engine
     {
         LogicSystem::LogicSystem() {}
@@ -23,24 +24,58 @@ namespace mitmeo
                 }
             }
 
-            // auto colliding = world.view<components::Collider, components::Position>();
-            // std::vector<blit::Rect> colliders = std::vector<blit::Rect>{};
-            // for (auto e : colliding)
-            // {
-            //     auto &c = colliding.get<components::Collider>(e);
-            //     auto &p = colliding.get<components::Position>(e);
-            //     colliders.emplace_back(blit::Rect{
-            //         p.x + c.x,
-            //         p.y + c.y,
-            //         c.w,
-            //         c.h});
-            // }
+            auto colliding = world.view<components::Collider, components::Position>();
+            std::vector<blit::Rect> colliders = std::vector<blit::Rect>{};
+            std::vector<entt::entity> entities = std::vector<entt::entity>{};
+            for (auto e : colliding)
+            {
+                auto &c = colliding.get<components::Collider>(e);
+                auto &p = colliding.get<components::Position>(e);
+                auto r = blit::Rect{
+                    p.x + c.x,
+                    p.y + c.y,
+                    c.w,
+                    c.h};
+                colliders.emplace_back(r);
+                entities.emplace_back(e);
 
-            // blit::screen.pen = Pen(255);
+                // if (master == nullptr)
+                // {
+                //     master = &r;
+                //     continue;
+                // }
+
+                // if (master->contains(blit::Point{r.x, r.y}))
+                // {
+                //     printf("hit!!\n");
+                // }
+            }
+
+            // std::pair<const entt::entity, blit::Rect> *master;
             // for (auto c : colliders)
             // {
-            //     blit::screen.line(blit::Point(c.y, c.y), blit::Point)
+            //     if (master == nullptr)
+            //     {
+            //         master = &c;
+            //     }
+            //     else
+            //     {
+            //         if (master->second.intersects(c.second))
+            //         {
+            //             printf("hit!!%d\n", (uint32_t)master->first);
+            //         }
+            //     }
             // }
+
+            for (uint32_t i = 1; i < colliders.size(); i++)
+            {
+                auto master = colliders[0];
+                auto slave = colliders[i];
+                if (master.intersects(slave))
+                {
+                    dispatcher.enqueue<events::CollisionEvent>(entities[0], entities[i]);
+                }
+            }
         }
     }
 }

@@ -9,6 +9,7 @@
 namespace mitmeo
 {
     extern entt::registry world;
+    extern entt::dispatcher dispatcher;
 
     namespace engine
     {

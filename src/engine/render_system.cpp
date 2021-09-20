@@ -53,20 +53,16 @@ namespace mitmeo
             {
                 auto &c = colliding.get<components::Collider>(e);
                 auto &p = colliding.get<components::Position>(e);
-                colliders.emplace_back(blit::Rect{
+                auto r = blit::Rect{
                     p.x + c.x,
                     p.y + c.y,
                     c.w,
-                    c.h});
-            }
+                    c.h};
 
-            for (auto c : colliders)
-            {
-                // printf("%d\n", c.x);
-                blit::screen.line(blit::Point(c.x - c.w / 2, c.y - c.h / 2), blit::Point(c.x + c.w / 2, c.y - c.h / 2));
-                blit::screen.line(blit::Point(c.x - c.w / 2, c.y + c.h / 2), blit::Point(c.x + c.w / 2, c.y + c.h / 2));
-                blit::screen.line(blit::Point(c.x - c.w / 2, c.y - c.h / 2), blit::Point(c.x - c.w / 2, c.y + c.h / 2));
-                blit::screen.line(blit::Point(c.x + c.w / 2, c.y - c.h / 2), blit::Point(c.x + c.w / 2, c.y + c.h / 2));
+                blit::screen.line(blit::Point(r.x - r.w / 2, r.y - r.h / 2), blit::Point(r.x + r.w / 2, r.y - r.h / 2));
+                blit::screen.line(blit::Point(r.x - r.w / 2, r.y + r.h / 2), blit::Point(r.x + r.w / 2, r.y + r.h / 2));
+                blit::screen.line(blit::Point(r.x - r.w / 2, r.y - r.h / 2), blit::Point(r.x - r.w / 2, r.y + r.h / 2));
+                blit::screen.line(blit::Point(r.x + r.w / 2, r.y - r.h / 2), blit::Point(r.x + r.w / 2, r.y + r.h / 2));
             }
         }
     };
