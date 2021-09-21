@@ -25,7 +25,7 @@ endif()
 
 find_package (32BLIT CONFIG REQUIRED PATHS ../32blit-sdk)
 
-add_definitions(-DDEBUG)
+# add_definitions(-DDEBUG)
 
 blit_executable (${PROJECT_NAME} ${PROJECT_SOURCE})
 
