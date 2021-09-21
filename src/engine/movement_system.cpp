@@ -14,6 +14,7 @@ namespace mitmeo
             {
                 auto &v = directional.get<components::Velocity>(e);
                 auto &d = directional.get<components::DirectionalControl>(e);
+
                 bool dpad_l = blit::buttons & blit::Button::DPAD_LEFT;
                 bool dpad_r = blit::buttons & blit::Button::DPAD_RIGHT;
                 bool dpad_u = blit::buttons & blit::Button::DPAD_UP;
@@ -43,7 +44,7 @@ namespace mitmeo
             }
 
             // Final translation
-            auto translation = world.view<components::Position, components::Velocity>();
+            auto translation = world.view<components::Position, components::Velocity, components::Sprite>();
             for (auto e : translation)
             {
                 auto &p = translation.get<components::Position>(e);
@@ -60,8 +61,8 @@ namespace mitmeo
                 }
 
                 // Just translate
-                p.x += v.x * v.speed;
-                p.y += v.y * v.speed;
+                p.x = std::clamp((int32_t)(p.x + v.x * v.speed), (int32_t)0, blit::screen.bounds.w);
+                p.y = std::clamp((int32_t)(p.y + v.y * v.speed), (int32_t)0, blit::screen.bounds.h);
             }
         }
     }

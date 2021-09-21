@@ -20,7 +20,7 @@ namespace mitmeo
                 {
                     if (time_ms - _last_fire_time >= fire_interval)
                     {
-                        VulcanProjectile(p.x + (s.w * s.scale) / 2, p.y - (s.h * s.scale) / 2);
+                        VulcanProjectile(p.x, p.y - (s.actual_h()) / 2);
                         _last_fire_time = time_ms;
                     }
                 }

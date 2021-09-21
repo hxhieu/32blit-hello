@@ -1,8 +1,7 @@
 #pragma once
 
-#include "32blit.hpp"
-#include "sprites.h"
 #include "entity.h"
+#include "player.h"
 
 namespace mitmeo
 {

@@ -4,6 +4,7 @@
 #include "entt.hpp"
 #include "game_engine.h"
 #include "components.h"
+#include "sprites.h"
 
 namespace mitmeo
 {

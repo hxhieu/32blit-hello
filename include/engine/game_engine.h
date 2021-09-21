@@ -6,6 +6,10 @@
 #include "logic_system.h"
 #include "render_system.h"
 
+#ifdef DEBUG
+#include "render_debug_system.h"
+#endif
+
 namespace mitmeo
 {
     extern entt::registry world;
@@ -15,5 +19,4 @@ namespace mitmeo
         void update(uint32_t time_ms);
         void render(uint32_t time_ms);
     }
-
 }

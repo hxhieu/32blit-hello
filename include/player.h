@@ -1,10 +1,6 @@
 #pragma once
 
-#include "32blit.hpp"
-#include "entt.hpp"
-#include "sprites.h"
 #include "entity.h"
-#include "components.h"
 #include "vulcan_projectile.h"
 
 namespace mitmeo
@@ -17,7 +13,7 @@ namespace mitmeo
             Player();
         };
 
-        struct PlayerComponent
+        struct PlayerComponent : public components::Vital
         {
         };
     }

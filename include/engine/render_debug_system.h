@@ -8,10 +8,10 @@ namespace mitmeo
 {
     namespace engine
     {
-        class RenderSystem
+        class RenderDebugSystem
         {
         public:
-            RenderSystem();
+            RenderDebugSystem();
             void run(entt::registry &world, uint32_t time_ms);
         };
     }
