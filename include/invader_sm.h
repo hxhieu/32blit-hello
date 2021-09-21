@@ -6,9 +6,8 @@ namespace mitmeo
 {
     namespace blit_invaders
     {
-        struct InvaderSmallComponent
+        struct InvaderSmallComponent : public components::Vital
         {
         };
-
     }
 }

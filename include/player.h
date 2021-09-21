@@ -13,7 +13,7 @@ namespace mitmeo
             Player();
         };
 
-        struct PlayerComponent
+        struct PlayerComponent : public components::Vital
         {
         };
     }
