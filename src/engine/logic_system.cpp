@@ -22,22 +22,6 @@ namespace mitmeo
                     world.destroy(e);
                 }
             }
-
-            // auto colliding = world.view<components::Collider, components::Position>();
-            // std::vector<blit::Rect> colliders = std::vector<blit::Rect>{};
-            // std::vector<entt::entity> entities = std::vector<entt::entity>{};
-            // for (auto e : colliding)
-            // {
-            //     auto &c = colliding.get<components::Collider>(e);
-            //     auto &p = colliding.get<components::Position>(e);
-            //     auto r = blit::Rect{
-            //         p.x + c.x,
-            //         p.y + c.y,
-            //         c.w,
-            //         c.h};
-            //     colliders.emplace_back(r);
-            //     entities.emplace_back(e);
-            // }
         }
     }
 }

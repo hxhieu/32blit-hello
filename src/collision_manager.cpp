@@ -85,6 +85,8 @@ namespace mitmeo
                 {
                     if (FirstContact(i, p))
                     {
+                        // TODO: Maybe doing this on a batch/background for perf?
+
                         // Destroy the projectile first
                         world.destroy(p.actor);
                         // Destroy the invader if no life left
@@ -93,6 +95,9 @@ namespace mitmeo
                         {
                             world.destroy(i.actor);
                         }
+                        // TODO: Not doing anything yet
+                        // Release the collision from the map
+                        ResolveCollision(i, p);
                     }
                 }
             }
