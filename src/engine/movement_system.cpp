@@ -49,7 +49,6 @@ namespace mitmeo
             {
                 auto &p = translation.get<components::Position>(e);
                 auto &v = translation.get<components::Velocity>(e);
-                auto &s = translation.get<components::Sprite>(e);
 
                 // Reset velocity, should always be 1
                 if (v.x != 0)
