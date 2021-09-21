@@ -15,5 +15,4 @@ namespace mitmeo
             void run(entt::registry &world, uint32_t time_ms);
         };
     }
-
 }

@@ -19,5 +19,4 @@ namespace mitmeo
         void update(uint32_t time_ms);
         void render(uint32_t time_ms);
     }
-
 }
