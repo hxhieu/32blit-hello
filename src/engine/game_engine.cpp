@@ -10,6 +10,11 @@ namespace mitmeo
         engine::MovementSystem _movement_system;
         engine::LogicSystem _logic_system;
         engine::RenderSystem _render_system;
+
+#ifdef DEBUG
+        engine::RenderDebugSystem _render_debug_system;
+#endif
+
     }
 
     void engine::update(uint32_t time_ms)
@@ -22,5 +27,9 @@ namespace mitmeo
     void engine::render(uint32_t time_ms)
     {
         _render_system.run(world, time_ms);
+
+#ifdef DEBUG
+        _render_debug_system.run(world, time_ms);
+#endif
     }
 }

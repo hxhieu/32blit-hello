@@ -11,12 +11,12 @@ namespace mitmeo
             // Debug pen
             blit::screen.pen = blit::Pen(0, 255, 0, 200);
 
-            auto system = world.view<components::Sprite, components::Position, components::Velocity>();
-            for (auto e : system)
+            auto renderer = world.view<components::Sprite, components::Position, components::Velocity>();
+            for (auto e : renderer)
             {
-                auto &p = system.get<components::Position>(e);
-                auto &s = system.get<components::Sprite>(e);
-                auto &v = system.get<components::Velocity>(e);
+                auto &p = renderer.get<components::Position>(e);
+                auto &s = renderer.get<components::Sprite>(e);
+                auto &v = renderer.get<components::Velocity>(e);
                 // Sprite animations
                 auto sprites = v.x == 0 ? s.idle : (v.x == 1 ? s.right : s.left);
                 auto sprite_count = sprites.size();
@@ -42,28 +42,6 @@ namespace mitmeo
                     blit::Point(s.w / 2, s.h / 2),
                     s.scale,
                     s.transform);
-                // Debug draw origin
-                blit::screen.line(blit::Point(p.x - 2, p.y), blit::Point(p.x + 2, p.y));
-                blit::screen.line(blit::Point(p.x, p.y - 2), blit::Point(p.x, p.y + 2));
-            }
-
-            auto colliding = world.view<components::Collider, components::Position>();
-            std::vector<blit::Rect> colliders = std::vector<blit::Rect>{};
-            for (auto e : colliding)
-            {
-                auto &c = colliding.get<components::Collider>(e);
-                auto &p = colliding.get<components::Position>(e);
-                auto r = blit::Rect{
-                    p.x + (int32_t)c.x,
-                    p.y + (int32_t)c.y,
-                    (int32_t)c.w,
-                    (int32_t)c.h};
-
-                // Debug draw colliders
-                blit::screen.line(blit::Point(r.x - r.w / 2, r.y - r.h / 2), blit::Point(r.x + r.w / 2, r.y - r.h / 2));
-                blit::screen.line(blit::Point(r.x - r.w / 2, r.y + r.h / 2), blit::Point(r.x + r.w / 2, r.y + r.h / 2));
-                blit::screen.line(blit::Point(r.x - r.w / 2, r.y - r.h / 2), blit::Point(r.x - r.w / 2, r.y + r.h / 2));
-                blit::screen.line(blit::Point(r.x + r.w / 2, r.y - r.h / 2), blit::Point(r.x + r.w / 2, r.y + r.h / 2));
             }
         }
     };

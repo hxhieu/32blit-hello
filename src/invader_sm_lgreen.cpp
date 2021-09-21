@@ -4,7 +4,7 @@ namespace mitmeo
 {
     namespace blit_invaders
     {
-        InvaderSmallLightGreen::InvaderSmallLightGreen()
+        InvaderSmallLightGreen::InvaderSmallLightGreen(int32_t x, int32_t y) : Invader(x, y)
         {
             world.emplace<components::Sprite>(
                 entt,
@@ -12,9 +12,6 @@ namespace mitmeo
                 std::vector<uint8_t>{sprites::invader_lgreen_1, sprites::invader_lgreen_2},
                 std::vector<uint8_t>{sprites::invader_lgreen_1, sprites::invader_lgreen_2},
                 12);
-            world.emplace<components::Velocity>(entt, 0, 0, 1);
-            world.emplace<components::Position>(entt, 100, 100);
-            world.emplace<components::Collider>(entt, 16, 16);
             world.emplace<InvaderSmallComponent>(entt);
         }
     }

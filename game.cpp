@@ -18,7 +18,10 @@ void init()
     blit::screen.sprites = blit::SpriteSheet::load(png_invaders);
     // Example spawn
     blit_invaders::Player();
-    blit_invaders::InvaderSmallLightGreen();
+    blit_invaders::InvaderSmallLightGreen(100, 100);
+    blit_invaders::InvaderSmallLightGreen(132, 100);
+    blit_invaders::InvaderSmallLightGreen(164, 100);
+    blit_invaders::InvaderSmallLightGreen(196, 100);
 }
 
 void update(uint32_t time_ms)

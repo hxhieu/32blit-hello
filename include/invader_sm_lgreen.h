@@ -1,15 +1,15 @@
 #pragma once
 
-#include "invader_sm.h"
+#include "invader.h"
 
 namespace mitmeo
 {
     namespace blit_invaders
     {
-        class InvaderSmallLightGreen : public engine::Entity
+        class InvaderSmallLightGreen : public Invader
         {
         public:
-            InvaderSmallLightGreen();
+            InvaderSmallLightGreen(int32_t x, int32_t y);
         };
     }
 }

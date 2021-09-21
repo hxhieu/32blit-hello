@@ -67,25 +67,32 @@ namespace mitmeo
                 playerProjectileActors.emplace_back(GetCollisionActor(e, &c, &p, &v));
             }
 
-            // Small invaders
-            auto smallInvaders = world.view<InvaderSmallComponent, components::Collider, components::Position>();
-            auto smallInvaderActors = std::vector<CollisionActor>{};
-            for (auto e : smallInvaders)
+            // Invaders
+            auto invaders = world.view<InvaderComponent, components::Collider, components::Position>();
+            auto invaderActors = std::vector<CollisionActor>{};
+            for (auto e : invaders)
             {
-                auto &v = smallInvaders.get<InvaderSmallComponent>(e);
-                auto &p = smallInvaders.get<components::Position>(e);
-                auto &c = smallInvaders.get<components::Collider>(e);
-                smallInvaderActors.emplace_back(GetCollisionActor(e, &c, &p, &v));
+                auto &v = invaders.get<InvaderComponent>(e);
+                auto &p = invaders.get<components::Position>(e);
+                auto &c = invaders.get<components::Collider>(e);
+                invaderActors.emplace_back(GetCollisionActor(e, &c, &p, &v));
             }
 
-            // Check player projectiles vs small invaders collision
-            for (auto i : smallInvaderActors)
+            // Check player projectiles vs invaders collision
+            for (auto i : invaderActors)
             {
                 for (auto p : playerProjectileActors)
                 {
                     if (FirstContact(i, p))
                     {
-                        printf("hit!!!\n");
+                        // Destroy the projectile first
+                        world.destroy(p.actor);
+                        // Destroy the invader if no life left
+                        auto lifeLeft = i.life - p.life;
+                        if (lifeLeft <= 0)
+                        {
+                            world.destroy(i.actor);
+                        }
                     }
                 }
             }
